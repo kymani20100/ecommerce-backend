@@ -40,7 +40,7 @@ router.get(`/`, async (req, res) =>{
     if(req.query.categories){
         filter = {category: req.query.categories.split(',')}
     }
-    const productList = await Product.find(filter).select('name image description price').populate('category');
+    const productList = await Product.find(filter).select('name image description price countInStock isFeatured richDescription').populate('category');
 
     if(!productList) {
         res.status(500).json({success: false})
