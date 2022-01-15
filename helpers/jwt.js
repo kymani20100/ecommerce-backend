@@ -1,4 +1,5 @@
 const expressJwt = require('express-jwt');
+const { models } = require('mongoose');
 
 function authJwt() {
     const secret = process.env.secret;
