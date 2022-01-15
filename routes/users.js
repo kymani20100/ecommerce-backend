@@ -22,11 +22,14 @@ router.get('/:id', async(req,res)=>{
     res.status(200).send(user);
 })
 
-router.post('/', async (req,res)=>{
+router.post('/', async (req,res) => {
+
+    const salt = bcrypt.genSaltSync(10);
+
     let user = new User({
         name: req.body.name,
         email: req.body.email,
-        passwordHash: bcrypt.hashSync(req.body.password, 10),
+        passwordHash: bcrypt.hashSync(req.body.password, salt),
         phone: req.body.phone,
         isAdmin: req.body.isAdmin,
         street: req.body.street,
@@ -103,10 +106,12 @@ router.post('/login', async (req,res) => {
 
 
 router.post('/register', async (req,res)=>{
+    const salt = bcrypt.genSaltSync(10);
+
     let user = new User({
         name: req.body.name,
         email: req.body.email,
-        passwordHash: bcrypt.hashSync(req.body.password, "what-is-dead-may-never-die"),
+        passwordHash: bcrypt.hashSync(req.body.password, salt),
         phone: req.body.phone,
         isAdmin: req.body.isAdmin,
         street: req.body.street,
