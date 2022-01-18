@@ -4,7 +4,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-router.get(`/`, async (req, res) =>{
+router.get(`/`, async (req, res) => {
     const userList = await User.find().select('-passwordHash');
 
     if(!userList) {
@@ -13,7 +13,7 @@ router.get(`/`, async (req, res) =>{
     res.send(userList);
 })
 
-router.get('/:id', async(req,res)=>{
+router.get('/:id', async(req,res) => {
     const user = await User.findById(req.params.id).select('-passwordHash');
 
     if(!user) {
@@ -46,7 +46,7 @@ router.post('/', async (req,res) => {
     res.send(user);
 })
 
-router.put('/:id',async (req, res)=> {
+router.put('/:id',async (req, res) => {
 
     const userExist = await User.findById(req.params.id);
     let newPassword
@@ -99,9 +99,7 @@ router.post('/login', async (req,res) => {
         res.status(200).send({user: user.email , token: token}) 
     } else {
        res.status(400).send('password is wrong!');
-    }
-
-    
+    }    
 })
 
 
