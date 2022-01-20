@@ -11,7 +11,8 @@ function authJwt() {
     }).unless({
         path: [
             { url: /\/public\/uploads(.*)/, methods: ['GET', 'OPTIONS', 'POST'] },
-            { url: /\/api\/v1\/products(.*)/, methods: ['GET', 'OPTIONS', 'POST'] },
+            { url: /\/api\/v1\/products(.*)/, methods: ['GET', 'OPTIONS']},
+            { url: /\/api\/v1\/products/, methods: ['POST', 'OPTIONS']},
             { url: /\/api\/v1\/categories(.*)/, methods: ['GET', 'OPTIONS'] },
             { url: /\/api\/v1\/orders(.*)/, methods: ['GET', 'OPTIONS', 'POST'] },
             { url: /\/api\/v1\/users(.*)/, methods: ['GET', 'OPTIONS'] },
